@@ -1,0 +1,37 @@
+#!/bin/zsh
+
+clear
+echo "========================================="
+echo "        STARTING SITE BUILD...          "
+echo "========================================="
+
+# 1. Clear deployment directories and set structures
+rm -rf docs
+mkdir -p docs/assets
+
+# 2. Run the pure Scheme compiler
+gosh build.scm
+
+# STRICT CHECK: If Gauche failed to run or syntax crashed, abort the shell script immediately
+if [ $? -ne 0 ]; then
+    echo ""
+    echo "❌ ERROR: Gauche compiler crashed. Aborting build process."
+    echo ""
+    exit 1
+fi
+
+# 3. If Scheme succeeds, use Zsh to safely mirror your entire images folder
+if [ -d "assets/images" ]; then
+    cp -r assets/images docs/assets/images
+    echo "Deployed Images: Entire assets/images folder mirrored successfully."
+fi
+
+# 4. Final Verification
+echo ""
+echo "#########################################"
+echo "#                                       #"
+echo "#  ✔ SUCCESS: SITE COMPILED CLEANLY!    #"
+echo "#  Target Directory: /docs               #"
+echo "#                                       #"
+echo "#########################################"
+echo ""

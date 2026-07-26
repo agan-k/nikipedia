@@ -1,0 +1,8 @@
+index.html
+about.html
+animals.html
+plants.html
+music.html
+video-games.html
+collections.html
+drawings.html
