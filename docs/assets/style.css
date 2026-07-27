@@ -2,6 +2,10 @@ body {
   font-size: 1.25rem;
 }
 
+nav li {
+  list-style: none;
+}
+
 .wrapper {
   display: flex;
   justify-content: center;
