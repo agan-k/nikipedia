@@ -6,3 +6,4 @@ music.html
 video-games.html
 collections.html
 drawings.html
+greek-mythology.html
